@@ -6,3 +6,4 @@ mongoose
   .connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log(`Connected to mongoDB`))
   .catch((e) => console.log(e));
+ 
