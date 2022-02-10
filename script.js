@@ -5,8 +5,9 @@ const app = express();
 
 dotenv.config({path: './config.env'});
 require('./conn')
-
-const User = require('./model/userSchema')
+app.use(express.json())
+app.use(require('./router/auth'))
+// const User = require('./model/userSchema')
 
 const PORT = process.env.PORT;
 
