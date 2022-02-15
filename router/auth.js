@@ -4,6 +4,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require('../conn')
 const User = require('../model/userSchema')
+const authenticate = require('../middleware/authenticate')
+const cookieParser = require('cookie-parser');
+
+router.use(cookieParser());
 router.get('/',(req, res) => {
     res.send("hello router")
   })
@@ -103,6 +107,17 @@ router.post('/register', async (req, res) => {
       } catch (error) {
           console.error(error)
       }
+  })
+
+
+  router.get('/about',authenticate,(req, res) => {
+    console.log("hello about")
+    res.send(req.rootUser)
+  })
+  //get user data for contact us
+  router.get('/getdata',authenticate,(req, res) => {
+   console.log("hello contact")
+    res.send(req.rootUser)
   })
 
 
